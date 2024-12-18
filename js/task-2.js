@@ -1,32 +1,44 @@
-class Storage {
-  #items;
-  constructor(items) {
-    this.#items = items;
-  }
+const images = [
+  {
+    url: "https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?dpr=2&h=750&w=1260",
+    alt: "White and Black Long Fur Cat",
+  },
+  {
+    url: "https://images.pexels.com/photos/213399/pexels-photo-213399.jpeg?dpr=2&h=750&w=1260",
+    alt: "Orange and White Koi Fish Near Yellow Koi Fish",
+  },
+  {
+    url: "https://images.pexels.com/photos/219943/pexels-photo-219943.jpeg?dpr=2&h=750&w=1260",
+    alt: "Group of Horses Running",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg",
+    alt: "Alpine Spring Meadows",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg",
+    alt: "Nature Landscape",
+  },
+  {
+    url: "https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg",
+    alt: "Lighthouse Coast Sea",
+  },
+];
 
-  getItems() {
-    return this.#items;
-  }
+const galleryList = document.querySelector(".gallery");
 
-  addItem(newItem) {
-    return this.#items.push(newItem);
-  }
-  removeItem(itemToRemove) {
-    const itemIndex = this.#items.indexOf(itemToRemove);
-    if (itemIndex !== -1) {
-      this.#items.splice(itemIndex, 1);
-    }
-  }
-}
+const element = document.createDocumentFragment();
 
-const storage = new Storage(["Nanitoids", "Prolonger", "Antigravitator"]);
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator"]
+images.forEach(({ url, alt }) => {
+  const listItem = document.createElement("li");
 
-storage.addItem("Droid");
-console.log(storage.getItems()); // ["Nanitoids", "Prolonger", "Antigravitator", "Droid"]
+  const image = document.createElement("img");
+  image.src = url;
+  image.alt = alt;
 
-storage.removeItem("Prolonger");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+  listItem.append(image);
 
-storage.removeItem("Scaner");
-console.log(storage.getItems()); // ["Nanitoids", "Antigravitator", "Droid"]
+  element.append(listItem);
+});
+
+galleryList.append(element);
