@@ -4,9 +4,9 @@ console.log(formEl);
 formEl.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  const formElValue = formEl.value;
+  const { email, password } = formEl.elements;
 
-  if (formElValue === "") {
+  if (!email.value.trim() || !password.value.trim()) {
     alert("All form fields must be filled in");
     return;
   }

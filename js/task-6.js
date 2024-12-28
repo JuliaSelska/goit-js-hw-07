@@ -5,28 +5,41 @@ function getRandomHexColor() {
 }
 
 const amount = document.querySelector("input");
-const btnCreate = document.querySelector("button[data-create]");
-const containerDiv = document.querySelector("#boxes");
-const destBtn = document.querySelector("button[data-destroy]");
+amount.className = "amount";
 
-btnCreate.addEventListener("click", () => {
-  let cicle = 1;
+const createBtn = document.querySelector("button[data-create]");
+createBtn.className = "create_btn";
+
+const divContainer = document.querySelector("#boxes");
+divContainer.className = "boxes";
+
+const dellBtn = document.querySelector("button[data-destroy]");
+dellBtn.className = "destroy_btn";
+
+const controls = document.querySelector("#controls");
+controls.className = "controls";
+
+createBtn.addEventListener("click", () => {
   let size = 30;
-  if ((amount.value !== 0) & ((amount.value > 0) & (amount.value <= 100))) {
-    while (cicle <= amount.value) {
-      cicle++;
+  divContainer.innerHTML = "";
+
+  if (amount.value !== 0 && amount.value > 0 && amount.value <= 100) {
+    const elements = Array.from({ length: amount.value }, () => {
       const createDiv = document.createElement("div");
       createDiv.style.width = `${size}px`;
       createDiv.style.height = `${size}px`;
-      containerDiv.append(createDiv);
-      size += 10;
+      createDiv.className = "create_div";
       createDiv.style.backgroundColor = getRandomHexColor();
-    }
+      size += 10;
+      return createDiv;
+    });
+
+    divContainer.append(...elements);
   }
 });
 
 function destroyBoxes() {
-  containerDiv.innerHTML = "";
+  divContainer.innerHTML = "";
 }
 
-destBtn.addEventListener("click", destroyBoxes);
+dellBtn.addEventListener("click", destroyBoxes);

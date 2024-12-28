@@ -7,7 +7,11 @@ function getRandomHexColor() {
 const body = document.querySelector("body");
 
 const colorBtn = document.querySelector(".change-color");
+colorBtn.className = "login_btn";
+
+const spanColor = document.querySelector(".color");
 
 colorBtn.addEventListener("click", () => {
   body.style.backgroundColor = getRandomHexColor();
+  spanColor.textContent = getRandomHexColor();
 });
