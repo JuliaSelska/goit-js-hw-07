@@ -12,6 +12,7 @@ colorBtn.className = "login_btn";
 const spanColor = document.querySelector(".color");
 
 colorBtn.addEventListener("click", () => {
-  body.style.backgroundColor = getRandomHexColor();
-  spanColor.textContent = getRandomHexColor();
+  const newColor = getRandomHexColor();
+  body.style.backgroundColor = newColor;
+  spanColor.textContent = newColor;
 });
